@@ -55,6 +55,30 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
+static int cmd_si(char *args) {
+  return 0;
+}
+
+static int cmd_info(char *args) {
+  return 0;
+}
+
+static int cmd_x(char *args) {
+  return 0;
+}
+
+static int cmd_p(char *args) {
+  return 0;
+}
+
+static int cmd_w(char* args) {
+  return 0;
+}
+
+static int cmd_d(char* args) {
+  return 0;
+}
+
 static struct {
   const char *name;
   const char *description;
@@ -63,9 +87,13 @@ static struct {
   { "help", "Display information about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-
+  {"si","Let the program execute N steps,default N=1",cmd_si},
+  {"info","Print register status,print monitoring point status",cmd_info},
+  {"x","",cmd_x},
+  {"p","",cmd_p},
+  {"w","",cmd_w},
+  {"d","Delete the monitoring point with serial number N",cmd_d},
   /* TODO: Add more commands */
-
 };
 
 #define NR_CMD ARRLEN(cmd_table)
