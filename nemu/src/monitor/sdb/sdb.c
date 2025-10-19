@@ -13,6 +13,7 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
+#include <stddef.h>
 #include <isa.h>
 #include <cpu/cpu.h>
 #include <readline/readline.h>
@@ -56,6 +57,10 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 
 static int cmd_si(char *args) {
+  uint64_t step  = 1;
+  if (args) 
+    step = strtoull(args,NULL,0);
+  cpu_exec(step);
   return 0;
 }
 
