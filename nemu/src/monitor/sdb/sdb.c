@@ -64,7 +64,7 @@ static int cmd_si(char *args) {
     step = strtoull(args,&endptr,0);
   
   if (*endptr != '\0') {
-    printf("si should be followed by an integer");
+    printf("si should be followed by an integer\n");
   } else {
     cpu_exec(step);
   }
