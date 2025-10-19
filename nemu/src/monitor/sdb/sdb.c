@@ -76,6 +76,10 @@ static int cmd_si(char *args) {
 static int cmd_info(char *args) {
   if (*args == 'r') {
     isa_reg_display();
+  } else if (*args == 'w') {
+    
+  } else {
+    printf("info should be followed by 'r' or 'w'\n");
   }
 
   return 0;
