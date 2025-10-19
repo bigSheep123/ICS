@@ -19,6 +19,7 @@
 #include <cpu/cpu.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <stdlib.h>
 #include "sdb.h"
 
 static int is_batch_mode = false;
@@ -61,7 +62,7 @@ static int cmd_si(char *args) {
   uint64_t step  = 1;
   char* endptr = "\0";
   if (args) 
-    step = strtoull(args,&endptr,0);
+    step = strtoull(args, &endptr, 0);
   
   if (*endptr != '\0') {
     printf("si should be followed by an integer\n");
@@ -73,6 +74,7 @@ static int cmd_si(char *args) {
 }
 
 static int cmd_info(char *args) {
+  isa_reg_display();
   return 0;
 }
 
