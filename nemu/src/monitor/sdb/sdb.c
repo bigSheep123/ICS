@@ -13,6 +13,7 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
+#include <stdio.h>
 #include <stddef.h>
 #include <isa.h>
 #include <cpu/cpu.h>
@@ -58,9 +59,16 @@ static int cmd_help(char *args);
 
 static int cmd_si(char *args) {
   uint64_t step  = 1;
+  char* endptr;
   if (args) 
-    step = strtoull(args,NULL,0);
-  cpu_exec(step);
+    step = strtoull(args,&endptr,0);
+  
+  if (*endptr != '\0') {
+    printf("si should be followed by an integer");
+  } else {
+    cpu_exec(step);
+  }
+
   return 0;
 }
 
