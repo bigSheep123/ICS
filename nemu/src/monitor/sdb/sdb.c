@@ -59,7 +59,7 @@ static int cmd_help(char *args);
 
 static int cmd_si(char *args) {
   uint64_t step  = 1;
-  char* endptr;
+  char* endptr = "\0";
   if (args) 
     step = strtoull(args,&endptr,0);
   
