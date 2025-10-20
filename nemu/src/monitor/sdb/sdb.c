@@ -21,6 +21,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
+#include <time.h>
 #include "sdb.h"
 
 static int is_batch_mode = false;
@@ -93,8 +94,9 @@ static int cmd_info(char *args) {
 
 static int cmd_x(char *args) {
   char *nums = strtok(args," ");
+  char *expr = strtok(NULL," ");
   printf("%s\n",nums);
-  printf("%s\n",args);
+  printf("%s\n",expr);
   return 0;
 }
 
