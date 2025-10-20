@@ -13,6 +13,7 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
+#include <string.h>
 #include <stdio.h>
 #include <stddef.h>
 #include <isa.h>
@@ -79,9 +80,9 @@ static int cmd_info(char *args) {
     return 0;
   }
 
-  if (*args == 'r') {
+  if (strcmp(args, "r")) {
     isa_reg_display();
-  } else if (*args == 'w') {
+  } else if (strcmp(args, "w")) {
 
   } else {
     printf("info should be followed by 'r' or 'w'\n");
