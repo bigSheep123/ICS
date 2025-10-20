@@ -92,6 +92,24 @@ static int cmd_info(char *args) {
   return 0;
 }
 
+int is_valid_hex(const char *str) {
+  if (!str || *str == '\0') return 0;
+  if (str[0] == '0' && (str[1] == 'x' || str[1] == 'X')) {
+    str += 2;
+    if (*str == '\0')
+      return 0;
+  }
+
+  while(*str) {
+    if (!isxdigit((unsigned char)*str)) {
+      return 0; // 发现无效字符
+    }
+    str++;
+  }
+
+  return 1;
+}
+
 static int cmd_x(char *args) {
   char *nums = strtok(args," ");
   char * endptr;
@@ -100,10 +118,19 @@ static int cmd_x(char *args) {
     printf("input N is illegal!!!\n");
     return 0;
   }
-  char *expr = strtok(NULL," ");
-  num++;
-  if (expr) {
 
+  char *expr = strtok(NULL," ");
+  if (is_valid_hex(expr)) {
+    long value = strtol(expr,&endptr,16);
+    if (*endptr != '\0') {
+      printf("input expr is illegal!!!\n");
+      return 0;
+    } else {
+      if (num) {}
+      if (value) {}
+    }
+  } else {
+    printf("input expr is illegal!!!\n");
   }
 
   return 0;
