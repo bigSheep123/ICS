@@ -96,14 +96,14 @@ static int cmd_x(char *args) {
   char *nums = strtok(args," ");
   char * endptr;
   long num = strtol(nums,&endptr,10);
-  if (endptr != NULL) {
+  if (*endptr != '\0') {
     printf("input N is illegal!!!\n");
     return 0;
   }
   char *expr = strtok(NULL," ");
   num++;
   if (expr) {
-    
+
   }
 
   return 0;
