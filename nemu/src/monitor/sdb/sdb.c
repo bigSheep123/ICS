@@ -92,6 +92,9 @@ static int cmd_info(char *args) {
 }
 
 static int cmd_x(char *args) {
+  char *nums = strtok(args," ");
+  printf("%s\n",nums);
+  printf("%s\n",args);
   return 0;
 }
 
@@ -117,7 +120,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   {"si","Let the program execute N steps,default N=1",cmd_si},
   {"info","Print register status,print monitoring point status",cmd_info},
-  {"x","",cmd_x},
+  {"x","for example: x N EXPR",cmd_x},
   {"p","",cmd_p},
   {"w","",cmd_w},
   {"d","Delete the monitoring point with serial number N",cmd_d},
