@@ -80,9 +80,9 @@ static int cmd_info(char *args) {
     return 0;
   }
 
-  if (strcmp(args, "r")) {
+  if (strcmp(args, "r") == 0) {
     isa_reg_display();
-  } else if (strcmp(args, "w")) {
+  } else if (strcmp(args, "w") == 0) {
 
   } else {
     printf("info should be followed by 'r' or 'w'\n");
