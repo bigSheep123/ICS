@@ -94,9 +94,18 @@ static int cmd_info(char *args) {
 
 static int cmd_x(char *args) {
   char *nums = strtok(args," ");
+  char * endptr;
+  long num = strtol(nums,&endptr,10);
+  if (endptr != NULL) {
+    printf("input N is illegal!!!\n");
+    return 0;
+  }
   char *expr = strtok(NULL," ");
-  printf("%s\n",nums);
-  printf("%s\n",expr);
+  num++;
+  if (expr) {
+    
+  }
+
   return 0;
 }
 
