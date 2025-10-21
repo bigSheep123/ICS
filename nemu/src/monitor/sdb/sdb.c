@@ -128,7 +128,8 @@ static int cmd_x(char *args) {
       return 0;
     } else {
       for (int i = 0; i < num; i ++) {
-        paddr_read(value,4);
+        word_t word = paddr_read(value,4);
+        printf("%d",word);
       }
     }
   } else {
