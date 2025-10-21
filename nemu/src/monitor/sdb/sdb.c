@@ -162,7 +162,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   {"si","Let the program execute N steps,default N=1",cmd_si},
   {"info","Print register status,print monitoring point status",cmd_info},
-  {"x","for example: x N EXPR",cmd_x},
+  {"x","for example: x N EXPR (else),'else' will be discarded",cmd_x},
   {"p","",cmd_p},
   {"w","",cmd_w},
   {"d","Delete the monitoring point with serial number N",cmd_d},
