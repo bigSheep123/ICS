@@ -129,6 +129,7 @@ static int cmd_x(char *args) {
     } else {
       for (int i = 0; i < num; i ++) {
         word_t word = paddr_read(value,4);
+        value += 4;
         printf("%#x\n",word);
       }
     }
