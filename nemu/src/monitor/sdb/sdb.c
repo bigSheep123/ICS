@@ -126,8 +126,11 @@ static int cmd_x(char *args) {
       printf("input expr is illegal!!!\n");
       return 0;
     } else {
-      if (num) {}
-      if (value) {}
+      for (int i = 0; i < num; i ++) {
+          if (value) {
+            
+          }
+      }
     }
   } else {
     printf("input expr is illegal!!!\n");
