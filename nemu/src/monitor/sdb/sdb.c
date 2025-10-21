@@ -22,6 +22,7 @@
 #include <readline/history.h>
 #include <stdlib.h>
 #include <time.h>
+#include <memory/paddr.h>
 #include "sdb.h"
 
 static int is_batch_mode = false;
@@ -127,9 +128,7 @@ static int cmd_x(char *args) {
       return 0;
     } else {
       for (int i = 0; i < num; i ++) {
-          if (value) {
-            
-          }
+        paddr_read(value,4);
       }
     }
   } else {
