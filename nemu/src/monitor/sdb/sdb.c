@@ -130,7 +130,7 @@ static int cmd_x(char *args) {
       for (int i = 0; i < num; i ++) {
         word_t word = paddr_read(value,4);
         value += 4;
-        printf("%08x\n",word);
+        printf("0x%08x\n",word);
       }
     }
   } else {
