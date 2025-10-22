@@ -119,6 +119,30 @@ static bool make_token(char *e) {
   return true;
 }
 
+bool check_parentheses(int p,int q) {
+  return true;
+}
+
+void eval(int p,int q) {
+  if (p > q) {
+    /* Bad expression */
+  }
+  else if (p == q) {
+    /* Single token.
+     * For now this token should be a number.
+     * Return the value of the number.
+     */
+  }
+  else if (check_parentheses(p, q) == true) {
+    /* The expression is surrounded by a matched pair of parentheses.
+     * If that is the case, just throw away the parentheses.
+     */
+    return eval(p + 1, q - 1);
+  }
+  else {
+    /* We should do more things here. */
+  }
+}
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
