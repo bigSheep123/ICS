@@ -99,8 +99,8 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.
          */
         memccpy(tokens[nr_token].str,substr_start,substr_len,sizeof(char));
+        tokens[nr_token].type = rules[i].token_type;
         nr_token ++;
-
 
         switch (rules[i].token_type) {
           default: TODO();
