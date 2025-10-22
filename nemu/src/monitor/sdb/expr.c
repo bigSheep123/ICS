@@ -98,12 +98,12 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-        memccpy(tokens[nr_token].str,substr_start,substr_len,sizeof(char));
-        tokens[nr_token].type = rules[i].token_type;
-        nr_token ++;
-
         switch (rules[i].token_type) {
-          default: TODO();
+          case TK_NOTYPE:  ;
+          default: 
+              memccpy(tokens[nr_token].str,substr_start,substr_len,sizeof(char));
+              tokens[nr_token].type = rules[i].token_type;
+              nr_token ++;
         }
 
         break;
