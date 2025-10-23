@@ -126,7 +126,7 @@ bool check_parentheses(int p, int q)
     }
 
     // 2. 初始化栈（存储左括号的索引）
-    int stack[1000];  // 假设括号深度不超过1000
+    int stack[65335];  // 假设括号深度不超过1000
     int top = -1;     // 栈顶指针
 
     // 3. 遍历区间 [p, q]
