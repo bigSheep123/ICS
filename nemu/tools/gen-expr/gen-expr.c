@@ -31,8 +31,46 @@ static char *code_format =
 "  return 0; "
 "}";
 
+uint32_t choose(uint32_t n) {
+  uint32_t target = rand() % n;
+  return target;
+}
+
+void gen_num() {
+  uint32_t random_num = rand() % 10;
+  snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf),"%d",random_num);
+}
+
+void gen(char ch) {
+  snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), "%c",ch);
+}
+
+void gen_rand_op() {
+  uint32_t random_num = rand() % 4;
+  char ch;
+  switch (random_num)
+  {
+    case 0:
+      ch = '+';
+    case 1:
+      ch = '-';
+    case 2:
+      ch = '/';
+    case 3:
+      ch = '*';
+    default:
+      assert("can't cover condition!!!");
+  }
+  
+  snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), "%c",ch);
+}
+
 static void gen_rand_expr() {
-  buf[0] = '\0';
+  switch (choose(3)) {
+    case 0: gen_num(); break;
+    case 1: gen('('); gen_rand_expr(); gen(')'); break;
+    default: gen_rand_expr(); gen_rand_op(); gen_rand_expr(); break;
+  }
 }
 
 int main(int argc, char *argv[]) {
