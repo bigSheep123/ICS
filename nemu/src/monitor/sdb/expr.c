@@ -157,7 +157,7 @@ word_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   uint32_t result = eval(0,nr_token-1);
-  printf("%d",result);
+  printf("%d\n",result);
   // BNF(&tokens[0]);
   // TODO();
 
