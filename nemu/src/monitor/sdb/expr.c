@@ -118,25 +118,29 @@ static bool make_token(char *e) {
   return true;
 }
 
-bool check_parentheses(int p,int q) {
-  if (tokens[p].type != '(' || tokens[q].type != ')') {
+bool check_parentheses(int p, int q)
+{
+  if (tokens[p].type != '(' || tokens[q].type != ')'){
     return false;
   }
-  char arr[512+65535] = {};
-  arr[0] = '(';
-  for (int tmp = p+1;tmp <= q; tmp++) {
-    if (arr[0] == '\0')
+  int stack_top = -1; 
+  for (int i = p; i <= q; i++)
+  {
+    if (tokens[i].type == '(')
+    {
+      if (stack_top >= 65534)
         return false;
-    if (tokens[tmp].type == '(') {
-      snprintf(arr,sizeof(arr)-strlen(arr),"%s",tokens[tmp].str);
-    } else if (tokens[tmp].type == ')') {
-      arr[strlen(arr)-1] = '\0';
-    } 
+    }
+    else if (tokens[i].type == ')')
+    {
+      if (stack_top < 0)
+      {
+        return false;
+      }
+      stack_top--;
+    }
   }
-  if (arr[0] != '\0') 
-    assert("print EPXR's () don't match!!!");
-
-  return true;
+  return (stack_top == -1);
 }
 
 uint32_t charArrToUint32(char* charArr) {
