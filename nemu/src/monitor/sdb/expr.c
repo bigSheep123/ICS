@@ -134,7 +134,7 @@ bool check_parentheses(int p,int q) {
     } 
   }
   if (arr[0] != '\0') 
-    return false;
+    assert("print EPXR's () don't match!!!");
 
   return true;
 }
