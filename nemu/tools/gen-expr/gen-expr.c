@@ -31,14 +31,13 @@ static char *code_format =
 "  return 0; "
 "}";
 
-uint32_t choose(uint32_t n) {
-  uint32_t target = rand() % n;
+int choose(int n) {
+  int target = rand() % n;
   return target;
 }
 
 void gen_num() {
-  uint32_t random_num = rand() % 10;
-  snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf),"%d",random_num);
+  snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf),"%d",choose(100));
 }
 
 void gen(char ch) {
@@ -46,26 +45,33 @@ void gen(char ch) {
 }
 
 void gen_rand_op() {
-  uint32_t random_num = rand() % 4;
-  char ch;
-  switch (random_num)
+  char ch = ' ';
+  switch (choose(4))
   {
     case 0:
       ch = '+';
+      break;
     case 1:
       ch = '-';
+      break;
     case 2:
       ch = '/';
+      break;
     case 3:
       ch = '*';
+      break;
     default:
       assert("can't cover condition!!!");
   }
-  
   snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), "%c",ch);
 }
 
 static void gen_rand_expr() {
+  if (strlen(buf) > 65000 ) {
+    gen_num();
+    return;
+  }
+
   switch (choose(3)) {
     case 0: gen_num(); break;
     case 1: gen('('); gen_rand_expr(); gen(')'); break;
@@ -82,6 +88,7 @@ int main(int argc, char *argv[]) {
   }
   int i;
   for (i = 0; i < loop; i ++) {
+    buf[0] = '\0';
     gen_rand_expr();
 
     sprintf(code_buf, code_format, buf);
