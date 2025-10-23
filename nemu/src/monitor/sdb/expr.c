@@ -143,6 +143,10 @@ void eval(int p,int q) {
   }
 }
 
+bool BNF() {
+  return true;
+}
+
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -150,6 +154,7 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
+  BNF();
   TODO();
 
   return 0;
