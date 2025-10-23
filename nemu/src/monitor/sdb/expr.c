@@ -145,7 +145,8 @@ uint32_t charArrToUint32(char* charArr) {
   return (uint32_t)num;
 }
 
-int getPosMainOp() {
+int getPosMainOp(int p,int q) {
+
   return 0;
 }
 
@@ -169,7 +170,7 @@ uint32_t eval(int p,int q) {
   }
   else {
     /* We should do more things here. */
-    int op = getPosMainOp();
+    int op = getPosMainOp(p,q);
     uint32_t left_val = eval(p,op-1);
     uint32_t right_val = eval(op+1,q); 
 
@@ -183,21 +184,14 @@ uint32_t eval(int p,int q) {
   }
 }
 
-// bool BNF(Token* token) {
-
-//   return true;
-// }
-
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
-
   /* TODO: Insert codes to evaluate the expression. */
   uint32_t result = eval(0,nr_token-1);
   printf("%d\n",result);
-  // BNF(&tokens[0]);
   // TODO();
 
   return 0;
