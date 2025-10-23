@@ -123,13 +123,14 @@ bool check_parentheses(int p, int q)
   if (tokens[p].type != '(' || tokens[q].type != ')'){
     return false;
   }
-  int stack_top = -1; 
+  int stack_top = -1;     
   for (int i = p; i <= q; i++)
   {
     if (tokens[i].type == '(')
     {
       if (stack_top >= 65534)
         return false;
+      ++stack_top;
     }
     else if (tokens[i].type == ')')
     {
