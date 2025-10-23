@@ -120,6 +120,20 @@ static bool make_token(char *e) {
 }
 
 bool check_parentheses(int p,int q) {
+  if (tokens[p].type != '(' || tokens[q].type != ')') {
+    return false;
+  }
+  char arr[512] = {};
+  for (int tmp = p;tmp != q; tmp++) {
+    if (tokens[tmp].type == '(') {
+      snprintf(arr,sizeof(arr)-strlen(arr),"%s",tokens[tmp].str);
+    } else if (tokens[tmp].type == ')') {
+      arr[strlen(arr)] = '\0';
+    }
+  }
+  if (arr[0] != '\0') 
+    return false;
+    
   return true;
 }
 
