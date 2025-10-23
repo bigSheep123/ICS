@@ -128,9 +128,9 @@ bool check_parentheses(int p,int q) {
     if (tokens[tmp].type == '(') {
       snprintf(arr,sizeof(arr)-strlen(arr),"%s",tokens[tmp].str);
     } else if (tokens[tmp].type == ')') {
-      arr[strlen(arr)-1] = '\0';
       if (arr[0] == '\0')
         return false;
+      arr[strlen(arr)-1] = '\0';
     } 
   }
   if (arr[0] != '\0') 
