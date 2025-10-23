@@ -143,7 +143,7 @@ void eval(int p,int q) {
   }
 }
 
-bool BNF() {
+bool BNF(Token* token) {
   return true;
 }
 
@@ -154,7 +154,7 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  BNF();
+  BNF(&tokens[0]);
   TODO();
 
   return 0;
