@@ -133,7 +133,7 @@ bool check_parentheses(int p,int q) {
   }
   if (arr[0] != '\0') 
     return false;
-    
+
   return true;
 }
 
@@ -143,6 +143,10 @@ uint32_t charArrToUint32(char* charArr) {
 
   num = strtoul(charArr,&endptr,10); 
   return (uint32_t)num;
+}
+
+int getPosMainOp() {
+  return 0;
 }
 
 uint32_t eval(int p,int q) {
@@ -165,8 +169,18 @@ uint32_t eval(int p,int q) {
   }
   else {
     /* We should do more things here. */
+    int op = getPosMainOp();
+    uint32_t left_val = eval(p,op-1);
+    uint32_t right_val = eval(op+1,q); 
+
+    switch (tokens[op].type) {
+    case '+': return left_val + right_val;
+    case '-': return left_val - right_val;
+    case '*': return left_val * right_val;
+    case '/': return left_val / right_val;
+    default: assert(0);
+    }
   }
-  return 1;
 }
 
 // bool BNF(Token* token) {
