@@ -122,7 +122,7 @@ bool check_parentheses(int p,int q) {
   return true;
 }
 
-void eval(int p,int q) {
+uint32_t eval(int p,int q) {
   if (p > q) {
     /* Bad expression */
   }
@@ -141,11 +141,13 @@ void eval(int p,int q) {
   else {
     /* We should do more things here. */
   }
+  return 1;
 }
 
-bool BNF(Token* token) {
-  return true;
-}
+// bool BNF(Token* token) {
+
+//   return true;
+// }
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -154,8 +156,10 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  BNF(&tokens[0]);
-  TODO();
+  uint32_t result = eval(0,nr_token-1);
+  printf("%d",result);
+  // BNF(&tokens[0]);
+  // TODO();
 
   return 0;
 }
