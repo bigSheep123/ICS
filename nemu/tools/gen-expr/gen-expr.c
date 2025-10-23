@@ -67,7 +67,7 @@ void gen_rand_op() {
 }
 
 static void gen_rand_expr() {
-  if (strlen(buf) > 65000 ) {
+  if (strlen(buf) > 60000 ) {
     gen_num();
     return;
   }
