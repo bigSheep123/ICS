@@ -152,6 +152,7 @@ int getPosMainOp(int p,int q) {
   bool flag_bracket = false;
   int bracket_num = 0;
   for (int tmp = p; tmp < q; tmp++) {
+
     if (tokens[tmp].type == TK_NUM) {
       continue;
     }
@@ -179,6 +180,7 @@ int getPosMainOp(int p,int q) {
         }
       }
     }
+    
     if (tokens[tmp].type == '+' || tokens[tmp].type == '-' ) {
       if (flag_bracket) {
         continue;
