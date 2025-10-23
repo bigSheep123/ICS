@@ -136,11 +136,12 @@ static int cmd_x(char *args) {
   } else {
     printf("input expr is illegal!!!\n");
   }
-
   return 0;
 }
 
 static int cmd_p(char *args) {
+  bool success; 
+  expr(args,&success);
   return 0;
 }
 
@@ -163,8 +164,8 @@ static struct {
   {"si","Let the program execute N steps,default N=1",cmd_si},
   {"info","Print register status,print monitoring point status",cmd_info},
   {"x","for example: x N EXPR (else),'else' will be discarded",cmd_x},
-  {"p","",cmd_p},
-  {"w","",cmd_w},
+  {"p","p EXPR,find the value of EXPR",cmd_p},
+  {"w","w EXPR,When EXPR changes,suspend program execution",cmd_w},
   {"d","Delete the monitoring point with serial number N",cmd_d},
   /* TODO: Add more commands */
 };
