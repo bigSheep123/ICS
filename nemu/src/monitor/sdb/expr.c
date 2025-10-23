@@ -120,28 +120,36 @@ static bool make_token(char *e) {
 
 bool check_parentheses(int p, int q)
 {
-  if (tokens[p].type != '(' || tokens[q].type != ')'){
-    return false;
-  }
-  int stack_top = -1;     
-  for (int i = p; i <= q; i++)
-  {
-    if (tokens[i].type == '(')
-    {
-      if (stack_top >= 65534)
+      // 1. 检查首尾是否为括号
+    if (tokens[p].type != '(' || tokens[q].type != ')') {
         return false;
-      ++stack_top;
     }
-    else if (tokens[i].type == ')')
-    {
-      if (stack_top < 0)
-      {
-        return false;
-      }
-      stack_top--;
+
+    // 2. 初始化栈（存储左括号的索引）
+    int stack[1000];  // 假设括号深度不超过1000
+    int top = -1;     // 栈顶指针
+
+    // 3. 遍历区间 [p, q]
+    for (int i = p; i <= q; i++) {
+        if (tokens[i].type == '(') {
+            // 左括号：压栈其索引
+            if (top >= 999) return false; // 栈溢出保护
+            stack[++top] = i;
+        } else if (tokens[i].type == ')') {
+            // 右括号：检查栈是否为空
+            if (top < 0) return false; // 栈空说明右括号多余
+            // 弹出栈顶的左括号索引
+            int left_index = stack[top--];
+            // 如果是尾括号，检查是否与首括号匹配
+            if (i == q && left_index != p) {
+                return false; // 尾括号匹配的不是首括号
+            }
+        }
+        // 忽略非括号字符（如数字、运算符）
     }
-  }
-  return (stack_top == -1);
+
+    // 4. 最终栈应为空（所有左括号已匹配）
+    return (top == -1);
 }
 
 uint32_t charArrToUint32(char* charArr) {
