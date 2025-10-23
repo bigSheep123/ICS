@@ -199,7 +199,7 @@ int getPosMainOp(int p,int q) {
 uint32_t eval(int p,int q) {
   if (p > q) {
     /* Bad expression */
-    Assert(0,"tokens's end must > tokens's start\n");
+    Assert(0,"() don't match,let tokens's end < tokens's start\n");
   }
   else if (p == q) {
     /* Single token.
