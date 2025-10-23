@@ -124,12 +124,13 @@ bool check_parentheses(int p,int q) {
     return false;
   }
   char arr[512] = {};
-  for (int tmp = p;tmp <= q; tmp++) {
+  arr[0] = '(';
+  for (int tmp = p+1;tmp <= q; tmp++) {
+    if (arr[0] == '\0')
+        return false;
     if (tokens[tmp].type == '(') {
       snprintf(arr,sizeof(arr)-strlen(arr),"%s",tokens[tmp].str);
     } else if (tokens[tmp].type == ')') {
-      if (arr[0] == '\0')
-        return false;
       arr[strlen(arr)-1] = '\0';
     } 
   }
