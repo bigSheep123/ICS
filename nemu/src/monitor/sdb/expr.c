@@ -125,6 +125,7 @@ bool check_parentheses(int p,int q) {
 uint32_t eval(int p,int q) {
   if (p > q) {
     /* Bad expression */
+    Assert(0,"tokens's end must > tokens's start\n");
   }
   else if (p == q) {
     /* Single token.
