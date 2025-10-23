@@ -37,7 +37,7 @@ int choose(int n) {
 }
 
 void gen_num() {
-  snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf),"%d",choose(100));
+  snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf),"%d",choose(100)+1);
 }
 
 void gen(char ch) {
