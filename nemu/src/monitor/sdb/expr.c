@@ -20,6 +20,8 @@
  */
 #include <regex.h>
 #include <stdbool.h>
+#include <macro.h>
+#include <stdlib.h>
 
 enum {
   TK_NOTYPE = 256, TK_EQ, TK_NUM,
@@ -122,6 +124,14 @@ bool check_parentheses(int p,int q) {
   return true;
 }
 
+uint32_t charArrToUint32(char* charArr) {
+  char* endptr;
+  unsigned long  num;
+
+  num = strtoul(charArr,&endptr,10); 
+  return (uint32_t)num;
+}
+
 uint32_t eval(int p,int q) {
   if (p > q) {
     /* Bad expression */
@@ -132,6 +142,7 @@ uint32_t eval(int p,int q) {
      * For now this token should be a number.
      * Return the value of the number.
      */
+    return charArrToUint32(tokens[p].str);
   }
   else if (check_parentheses(p, q) == true) {
     /* The expression is surrounded by a matched pair of parentheses.
