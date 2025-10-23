@@ -124,7 +124,7 @@ bool check_parentheses(int p,int q) {
     return false;
   }
   char arr[512] = {};
-  for (int tmp = p;tmp != q; tmp++) {
+  for (int tmp = p;tmp <= q; tmp++) {
     if (tokens[tmp].type == '(') {
       snprintf(arr,sizeof(arr)-strlen(arr),"%s",tokens[tmp].str);
     } else if (tokens[tmp].type == ')') {
@@ -180,7 +180,7 @@ int getPosMainOp(int p,int q) {
         }
       }
     }
-    
+
     if (tokens[tmp].type == '+' || tokens[tmp].type == '-' ) {
       if (flag_bracket) {
         continue;
