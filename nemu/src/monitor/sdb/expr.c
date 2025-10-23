@@ -70,7 +70,7 @@ void init_regex() {
 
 typedef struct token {
   int type;
-  char str[32];
+  char str[65536];
 } Token;
 
 static Token tokens[32] __attribute__((used)) = {};
@@ -122,7 +122,7 @@ bool check_parentheses(int p,int q) {
   if (tokens[p].type != '(' || tokens[q].type != ')') {
     return false;
   }
-  char arr[512] = {};
+  char arr[512+65535] = {};
   arr[0] = '(';
   for (int tmp = p+1;tmp <= q; tmp++) {
     if (arr[0] == '\0')
