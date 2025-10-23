@@ -145,9 +145,51 @@ uint32_t charArrToUint32(char* charArr) {
   return (uint32_t)num;
 }
 
-int getPosMainOp(int p,int q) {
 
-  return 0;
+int getPosMainOp(int p,int q) {
+  int candicator = 0;
+  int type = 0;
+  bool flag_bracket = false;
+  int bracket_num = 0;
+  for (int tmp = p; tmp < q; tmp++) {
+    if (tokens[tmp].type == TK_NUM) {
+      continue;
+    }
+    if (tokens[tmp].type == '(') {
+      bracket_num++;
+      flag_bracket = true;
+      continue;
+    }
+    if (tokens[tmp].type == ')') {
+      bracket_num--;
+      if (bracket_num == 0) 
+        flag_bracket = false;
+      continue;
+    }
+
+    if (( tokens[tmp].type == '*' || tokens[tmp].type == '/')) {
+      if (flag_bracket) {
+        continue;
+      } else {
+        if (type == '+') {
+          continue;
+        } else {
+          type = '*';
+          candicator = tmp;
+        }
+      }
+    }
+    if (tokens[tmp].type == '+' || tokens[tmp].type == '-' ) {
+      if (flag_bracket) {
+        continue;
+      } else {
+        type = '+';
+        candicator = tmp;
+      }
+    }
+  }
+
+  return candicator;
 }
 
 uint32_t eval(int p,int q) {
