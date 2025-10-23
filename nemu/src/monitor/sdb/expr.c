@@ -98,7 +98,7 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.
          */
         switch (rules[i].token_type) {
-          case TK_NOTYPE:  ;
+          case TK_NOTYPE:  break;
           default: 
               memccpy(tokens[nr_token].str,substr_start,substr_len,sizeof(char));
               tokens[nr_token].type = rules[i].token_type;
