@@ -64,7 +64,7 @@ int main(int argc,char* argv[]) {
     // }
 
     if (counter == 17) {
-        printf("%d",counter);
+        printf("%d\n",counter);
     }
     bool test = true;
     word_t expr_res = expr(input,&test); 
