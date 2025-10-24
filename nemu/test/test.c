@@ -2,6 +2,7 @@
 #include <stdio.h>
 int main()
 {
-  uint32_t x = -1;
-  printf("%u",x);
+  unsigned result = (32-634); 
+  printf("%u\n", result);
+  return 0;
 }
