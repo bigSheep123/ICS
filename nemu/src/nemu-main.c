@@ -25,6 +25,7 @@ int is_exit_status_bad();
 
 // test expr's function
 extern word_t expr(char *e, bool *success);
+extern void init_regex();
 word_t transStrToU32i(const char *str) {
     char* endptr;
     unsigned long num = strtoul(str,&endptr,10);
@@ -34,6 +35,7 @@ word_t transStrToU32i(const char *str) {
 }
 
 int main(int argc,char* argv[]) {
+  init_regex();
   FILE* file;
   char line[65535+20] = {};
   char *res = NULL;
