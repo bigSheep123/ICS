@@ -66,6 +66,19 @@ void gen_rand_op() {
   snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), "%c",ch);
 }
 
+// bool is_zero_expression() {
+
+// }
+
+// void gen_non_zero_expr() {
+//   size_t old_len = strlen(buf);
+
+//   do {
+//     buf[old_len] = '\0';
+//     gen_rand_expr();
+//   } while (is_zero_expression());
+// }
+
 static void gen_rand_expr() {
   if (strlen(buf) > 60000 ) {
     gen_num();
@@ -75,7 +88,16 @@ static void gen_rand_expr() {
   switch (choose(3)) {
     case 0: gen_num(); break;
     case 1: gen('('); gen_rand_expr(); gen(')'); break;
-    default: gen_rand_expr(); gen_rand_op(); gen_rand_expr(); break;
+    default: 
+      gen_rand_expr(); 
+      gen_rand_op();
+      
+      if (buf[strlen(buf) -1] == '/') {
+        gen_num();
+      } else {
+        gen_rand_expr();
+      }
+      break;
   }
 }
 
