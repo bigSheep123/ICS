@@ -66,8 +66,9 @@ void gen_rand_op() {
   snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), "%c",ch);
 }
 
+// 思路：可以实现这个函数进行判断是否是为0的表达式，但是逻辑过于复杂
+// 现在使用简单办法直接 gen_num();
 // bool is_zero_expression() {
-
 // }
 
 // void gen_non_zero_expr() {
