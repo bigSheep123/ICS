@@ -14,8 +14,6 @@
 ***************************************************************************************/
 
 #include <common.h>
-// #include <stdio.h>
-// #include <stdlib.h>
 
 void init_monitor(int, char *[]);
 void am_init_monitor();
