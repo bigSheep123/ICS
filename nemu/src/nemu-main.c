@@ -47,7 +47,7 @@ int main(int argc,char* argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  int counter = 0;
+  int counter = 1;
   while(fgets(line,sizeof(line),file) != NULL) {
     res = strtok(line," ");
     if (res != NULL) {
