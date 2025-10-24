@@ -64,7 +64,7 @@ int main(int argc,char* argv[]) {
 
     bool test = true;
     if (expr(input,&test) == transStrToU32i(res)) {
-        printf("%d line is correct!!!\n",counter);
+        //printf("%d line is correct!!!\n",counter);
     } else {
         printf("%d line is failed!!!\n",counter);
     }
