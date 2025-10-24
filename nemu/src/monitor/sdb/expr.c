@@ -210,7 +210,7 @@ uint32_t getPosMainOp(uint32_t p,uint32_t q) {
   return candicator;
 }
 
-uint32_t eval(uint32_t p,uint32_t q) {
+int eval(int p,int q) {
   if (p > q) {
     /* Bad expression */
     Assert(0,"input is an error,let tokens's end < tokens's start\n");
@@ -230,9 +230,9 @@ uint32_t eval(uint32_t p,uint32_t q) {
   }
   else {
     /* We should do more things here. */
-    uint32_t op = getPosMainOp(p,q);
-    uint32_t left_val = eval(p,op-1);
-    uint32_t right_val = eval(op+1,q); 
+    int op = getPosMainOp(p,q);
+    int left_val = eval(p,op-1);
+    int right_val = eval(op+1,q); 
 
     switch (tokens[op].type) {
     case '+': return left_val + right_val;
