@@ -162,7 +162,7 @@ uint32_t charArrToUint32(char* charArr) {
 }
 
 
-int getPosMainOp(int p,int q) {
+uint32_t getPosMainOp(uint32_t p,uint32_t q) {
   int candicator = 0;
   int type = 0;
   bool flag_bracket = false;
@@ -210,7 +210,7 @@ int getPosMainOp(int p,int q) {
   return candicator;
 }
 
-uint32_t eval(int p,int q) {
+uint32_t eval(uint32_t p,uint32_t q) {
   if (p > q) {
     /* Bad expression */
     Assert(0,"input is an error,let tokens's end < tokens's start\n");
@@ -230,7 +230,7 @@ uint32_t eval(int p,int q) {
   }
   else {
     /* We should do more things here. */
-    int op = getPosMainOp(p,q);
+    uint32_t op = getPosMainOp(p,q);
     uint32_t left_val = eval(p,op-1);
     uint32_t right_val = eval(op+1,q); 
 
