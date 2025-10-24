@@ -14,22 +14,43 @@
 ***************************************************************************************/
 
 #include <common.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 void init_monitor(int, char *[]);
 void am_init_monitor();
 void engine_start();
 int is_exit_status_bad();
 
-int main(int argc, char *argv[]) {
-  /* Initialize the monitor. */
-#ifdef CONFIG_TARGET_AM
-  am_init_monitor();
-#else
-  init_monitor(argc, argv);
-#endif
+// test expr's function
+int main(int argc,char* argv[]) {
+  FILE* file;
+  char line[65535+20];
 
-  /* Start engine. */
-  engine_start();
+  file = fopen("/home/dh/ysyx/ics2024/nemu/tools/gen-expr/input", "r");
+  if (file == NULL) {
+    perror("Error to open the file");
+    exit(EXIT_FAILURE);
+  }
 
-  return is_exit_status_bad();
+  while(fgets(line,sizeof(line),file) != NULL) {
+    printf("%s",line);
+  }
+
+  fclose(file);
+  return 0;
 }
+
+// int main(int argc, char *argv[]) {
+//   /* Initialize the monitor. */
+// #ifdef CONFIG_TARGET_AM
+//   am_init_monitor();
+// #else
+//   init_monitor(argc, argv);
+// #endif
+
+//   /* Start engine. */
+//   engine_start();
+
+//   return is_exit_status_bad();
+// }
