@@ -20,7 +20,19 @@ void am_init_monitor();
 void engine_start();
 int is_exit_status_bad();
 
+
+
+
 // test expr's function
+extern word_t expr(char *e, bool *success);
+word_t transStrToU32i(const char *str) {
+    char* endptr;
+    unsigned long num = strtoul(str,&endptr,10);
+
+    word_t res = (word_t)num;
+    return res;
+}
+
 int main(int argc,char* argv[]) {
   FILE* file;
   char line[65535+20] = {};
@@ -33,18 +45,28 @@ int main(int argc,char* argv[]) {
     exit(EXIT_FAILURE);
   }
 
+  int counter = 0;
   while(fgets(line,sizeof(line),file) != NULL) {
     res = strtok(line," ");
     if (res != NULL) {
         input = strtok(NULL," ");
     }
 
-    if (res != NULL && input != NULL) {
-        printf("res: %s\n", res); 
-        printf("input: %s\n", input); 
+    // if (res != NULL && input != NULL) {
+    //     printf("res: %s\n", res); 
+    //     printf("input: %s\n", input); 
+    // } else {
+    //     printf("strtok failed\n");
+    // }
+
+    bool test = true;
+    if (expr(input,&test) == test) {
+        printf("%d line is correct!!!\n",counter);
     } else {
-        printf("strtok failed\n");
+        printf("%d line is failed!!!\n",counter);
     }
+
+    counter++;
   }
 
   fclose(file);

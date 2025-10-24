@@ -250,8 +250,21 @@ word_t expr(char *e, bool *success) {
   }
   /* TODO: Insert codes to evaluate the expression. */
   uint32_t result = eval(0,nr_token-1);
-  printf("%u\n",result);
+  //printf("%u\n",result);
   // TODO();
 
-  return 0;
+  return result;
 }
+
+// word_t expr(char *e, bool *success) {
+//   if (!make_token(e)) {
+//     *success = false;
+//     return 0;
+//   }
+//   /* TODO: Insert codes to evaluate the expression. */
+//   uint32_t result = eval(0,nr_token-1);
+//   printf("%u\n",result);
+//   // TODO();
+
+//   return 0;
+// }
