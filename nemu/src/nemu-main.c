@@ -40,8 +40,8 @@ int main(int argc,char* argv[]) {
     }
 
     if (res != NULL && input != NULL) {
-        printf("res: '%s'\n", res); 
-        printf("input: '%s'\n", input); 
+        printf("res: %s\n", res); 
+        printf("input: %s\n", input); 
     } else {
         printf("strtok failed\n");
     }
