@@ -82,7 +82,7 @@ static bool make_token(char *e) {
   regmatch_t pmatch;
 
   nr_token = 0;
-  tokens[0].str[0] = '\0';
+  memset(tokens,0,sizeof(Token)*65535);
 
   while (e[position] != '\0') {
     /* Try all rules one by one. */
