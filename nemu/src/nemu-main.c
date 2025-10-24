@@ -40,10 +40,10 @@ int main(int argc,char* argv[]) {
     }
 
     if (res != NULL && input != NULL) {
-        printf("部分1: '%s'\n", res); // 输出: 部分1: '10'
-        printf("部分2: '%s'\n", input); // 输出: 部分2: '（10）'
+        printf("res: '%s'\n", res); 
+        printf("input: '%s'\n", input); 
     } else {
-        printf("字符串格式不符合预期，可能没有空格分隔。\n");
+        printf("strtok failed\n");
     }
   }
 
