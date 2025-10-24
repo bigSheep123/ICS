@@ -63,9 +63,6 @@ int main(int argc,char* argv[]) {
     //     printf("strtok failed\n");
     // }
 
-    if (counter == 17) {
-        printf("%d\n",counter);
-    }
     bool test = true;
     word_t expr_res = expr(input,&test); 
     if (expr_res == transStrToU32i(res)) {
