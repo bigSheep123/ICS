@@ -23,7 +23,9 @@ int is_exit_status_bad();
 // test expr's function
 int main(int argc,char* argv[]) {
   FILE* file;
-  char line[65535+20];
+  char line[65535+20] = {};
+  char *res = NULL;
+  char *input = NULL;
 
   file = fopen("/home/dh/ysyx/ics2024/nemu/tools/gen-expr/input", "r");
   if (file == NULL) {
@@ -32,7 +34,17 @@ int main(int argc,char* argv[]) {
   }
 
   while(fgets(line,sizeof(line),file) != NULL) {
-    printf("%s",line);
+    res = strtok(input," ");
+    if (res != NULL) {
+        input = strtok(NULL," ");
+    }
+
+    if (res != NULL && input != NULL) {
+        printf("部分1: '%s'\n", res); // 输出: 部分1: '10'
+        printf("部分2: '%s'\n", input); // 输出: 部分2: '（10）'
+    } else {
+        printf("字符串格式不符合预期，可能没有空格分隔。\n");
+    }
   }
 
   fclose(file);
