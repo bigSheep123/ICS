@@ -34,7 +34,7 @@ int main(int argc,char* argv[]) {
   }
 
   while(fgets(line,sizeof(line),file) != NULL) {
-    res = strtok(input," ");
+    res = strtok(line," ");
     if (res != NULL) {
         input = strtok(NULL," ");
     }
