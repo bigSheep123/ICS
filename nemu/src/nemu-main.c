@@ -14,6 +14,7 @@
 ***************************************************************************************/
 
 #include <common.h>
+#include <stdio.h>
 
 void init_monitor(int, char *[]);
 void am_init_monitor();
@@ -62,8 +63,12 @@ int main(int argc,char* argv[]) {
     //     printf("strtok failed\n");
     // }
 
+    if (counter == 17) {
+        printf("%d",counter);
+    }
     bool test = true;
-    if (expr(input,&test) == transStrToU32i(res)) {
+    word_t expr_res = expr(input,&test); 
+    if (expr_res == transStrToU32i(res)) {
         //printf("%d line is correct!!!\n",counter);
     } else {
         printf("%d line is failed!!!\n",counter);
