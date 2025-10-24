@@ -52,6 +52,7 @@ int main(int argc,char* argv[]) {
     res = strtok(line," ");
     if (res != NULL) {
         input = strtok(NULL," ");
+        input[strlen(input) -1] ='\0';
     }
 
     // if (res != NULL && input != NULL) {
