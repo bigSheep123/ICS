@@ -81,6 +81,7 @@ static bool make_token(char *e) {
   int i;
   regmatch_t pmatch;
 
+  // clear memory
   nr_token = 0;
   memset(tokens,0,sizeof(Token)*65535);
 
@@ -91,8 +92,8 @@ static bool make_token(char *e) {
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
 
-        // Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
-        //     i, rules[i].regex, position, substr_len, substr_len, substr_start);
+        Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
+            i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
         position += substr_len;
 
@@ -125,7 +126,6 @@ bool check_parentheses(int p, int q)
     if (tokens[p].type != '(' || tokens[q].type != ')') {
         return false;
     }
-
     // 2. 初始化栈（存储左括号的索引）
     int stack[65335];  // 假设括号深度不超过1000
     int top = -1;     // 栈顶指针
@@ -244,6 +244,7 @@ int eval(int p,int q) {
   }
 }
 
+
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -251,20 +252,8 @@ word_t expr(char *e, bool *success) {
   }
   /* TODO: Insert codes to evaluate the expression. */
   uint32_t result = eval(0,nr_token-1);
+  printf("%u\n",result);
   // TODO();
 
-  return result;
+  return 0;
 }
-
-// word_t expr(char *e, bool *success) {
-//   if (!make_token(e)) {
-//     *success = false;
-//     return 0;
-//   }
-//   /* TODO: Insert codes to evaluate the expression. */
-//   uint32_t result = eval(0,nr_token-1);
-//   printf("%u\n",result);
-//   // TODO();
-
-//   return 0;
-// }
