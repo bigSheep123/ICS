@@ -17,13 +17,6 @@
 
 #define NR_WP 32
 
-typedef struct watchpoint {
-  int NO; // order
-  struct watchpoint *next;
-
-  /* TODO: Add more members if necessary */
-
-} WP;
 
 static WP wp_pool[NR_WP] = {};
 static WP *head = NULL, *free_ = NULL;
@@ -49,8 +42,17 @@ WP* new_wp() {
   return tmp;
 }
 
+void add_workingPoint(WP* wp) {
+  if (head == NULL) 
+    head = wp;
+  else  {
+    head->next = wp;
+  }
+}
+
 void free_wp(WP* wp) {
-  
+  wp->next = free_;
+  free_ = wp;
 }
 
 

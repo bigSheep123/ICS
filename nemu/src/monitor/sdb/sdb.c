@@ -25,6 +25,7 @@
 #include <memory/paddr.h>
 #include "sdb.h"
 
+
 static int is_batch_mode = false;
 
 void init_regex();
@@ -146,6 +147,10 @@ static int cmd_p(char *args) {
 }
 
 static int cmd_w(char* args) {
+  WP* Wpoint = new_wp();
+  Wpoint->expr = args;
+  add_workingPoint(Wpoint);
+  printf("Already reach the WatchPoint.");
   return 0;
 }
 
