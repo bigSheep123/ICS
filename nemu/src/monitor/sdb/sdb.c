@@ -85,7 +85,10 @@ static int cmd_info(char *args) {
   if (strcmp(args, "r") == 0) {
     isa_reg_display();
   } else if (strcmp(args, "w") == 0) {
-
+    char* header[4] = {"Num","Expr","Last_Value","New_Value"};
+    for (int i = 0; i < ARRLEN(header); i++) {
+      printf("%5s ",header[i]);
+    }
   } else {
     printf("info should be followed by 'r' or 'w'\n");
   }
