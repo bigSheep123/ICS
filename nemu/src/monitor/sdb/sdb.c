@@ -88,8 +88,8 @@ static int cmd_info(char *args) {
     char* header[4] = {"Num","Expr","Last_Value","New_Value"};
     for (int i = 0; i < ARRLEN(header); i++) {
       printf("%10s  ",header[i]);
-      printf("\n");
     }
+    printf("\n");
   } else {
     printf("info should be followed by 'r' or 'w'\n");
   }
