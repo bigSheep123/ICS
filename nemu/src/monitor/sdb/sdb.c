@@ -150,7 +150,7 @@ static int cmd_w(char* args) {
   WP* Wpoint = new_wp();
   Wpoint->expr = args;
   add_workingPoint(Wpoint);
-  printf("Already reach the WatchPoint.");
+  printf("Already reach the WatchPoint.\n");
   return 0;
 }
 
