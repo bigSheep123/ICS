@@ -87,7 +87,7 @@ static int cmd_info(char *args) {
   } else if (strcmp(args, "w") == 0) {
     char* header[4] = {"Num","Expr","Last_Value","New_Value"};
     for (int i = 0; i < ARRLEN(header); i++) {
-      printf("%10s  ",header[i]);
+      printf("%8s  ",header[i]);
     }
     printf("\n");
   } else {
