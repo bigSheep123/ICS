@@ -15,6 +15,7 @@
 
 #include "sdb.h"
 
+
 #define NR_WP 32
 
 
@@ -50,9 +51,19 @@ void add_workingPoint(WP* wp) {
   }
 }
 
-void free_wp(WP* wp) {
-  wp->next = free_;
-  free_ = wp;
+void free_wp(int order) {
+  if (head == NULL) {
+    printf("No wp need to be free!\n");
+    return;
+  }
+
+  WP* tmp = head;
+  while (tmp != NULL) {
+    if (tmp->NO == order)
+      break;
+    tmp = tmp->next;
+  }
+
 }
 
 
