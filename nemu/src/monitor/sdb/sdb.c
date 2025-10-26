@@ -90,6 +90,7 @@ static int cmd_info(char *args) {
       printf("%6s  ",header[i]);
     }
     printf("\n");
+    
   } else {
     printf("info should be followed by 'r' or 'w'\n");
   }

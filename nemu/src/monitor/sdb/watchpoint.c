@@ -14,6 +14,7 @@
 ***************************************************************************************/
 
 #include "sdb.h"
+#include <time.h>
 
 #define NR_WP 32
 
@@ -82,6 +83,14 @@ void free_wp(int order) {
 
   record->next = tmp->next;
   insert_front_free(tmp);
+}
+
+void iterator_head() {
+  WP* tmp = head;
+  while(tmp != NULL) {
+    printf("%d\n",tmp->NO);
+    tmp = tmp->next;
+  }
 }
 
 
