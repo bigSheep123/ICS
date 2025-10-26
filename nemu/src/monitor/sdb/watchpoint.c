@@ -47,7 +47,11 @@ void add_workingPoint(WP* wp) {
   if (head == NULL) 
     head = wp;
   else  {
-    head->next = wp;
+    WP* tmp = head;
+    while(tmp->next != NULL){
+      tmp = tmp->next;
+    }
+    tmp->next = wp;
   }
 }
 
