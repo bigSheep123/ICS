@@ -15,7 +15,6 @@
 
 #include "sdb.h"
 
-
 #define NR_WP 32
 
 
@@ -51,6 +50,11 @@ void add_workingPoint(WP* wp) {
   }
 }
 
+void insert_front_free(WP* wp) {
+  wp->next = free_;
+  free_ = wp;
+}
+
 void free_wp(int order) {
   if (head == NULL) {
     printf("No wp need to be free!\n");
@@ -58,12 +62,26 @@ void free_wp(int order) {
   }
 
   WP* tmp = head;
+  WP* record = NULL;
   while (tmp != NULL) {
     if (tmp->NO == order)
       break;
+    record = tmp;
     tmp = tmp->next;
   }
+  if (tmp == NULL){
+    printf("Can't find the order wp\n");
+    return;
+  }
 
+  if (record == NULL) {
+    head = tmp->next;
+    insert_front_free(tmp);
+    return;
+  }
+
+  record->next = tmp->next;
+  insert_front_free(tmp);
 }
 
 
