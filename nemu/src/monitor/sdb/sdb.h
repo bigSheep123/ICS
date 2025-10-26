@@ -30,5 +30,6 @@ word_t expr(char *e, bool *success);
 WP* new_wp();
 void add_workingPoint(WP* wp);
 void free_wp(int order);
+void iterator_head();
 
 #endif
