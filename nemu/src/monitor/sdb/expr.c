@@ -24,7 +24,8 @@
 #include <stdlib.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ, TK_NUM,
+  TK_NOTYPE = 256, TK_EQ, TK_NUM_DEC, TK_NUM_HEX, REG,
+  TK_NOT_EQ, TK_AND,
   /* TODO: Add more token types */
 };
 
@@ -32,7 +33,6 @@ static struct rule {
   const char *regex;
   int token_type;
 } rules[] = {
-
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
@@ -42,9 +42,13 @@ static struct rule {
   {"-",'-'},      
   {"\\*",'*'},
   {"/",'/'},
-  {"0|[1-9][0-9]*",TK_NUM},
+  {"0|[1-9][0-9]*",TK_NUM_DEC},
+  {"0[xX](0|[1-9a-fA-F][0-9a-fA-F]*)",TK_NUM_HEX},
   {"\\(",'('},
   {"\\)",')'},
+  {"^\\$",REG},
+  {"!=",TK_NOT_EQ},
+  {"&&",TK_AND},
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -169,7 +173,7 @@ uint32_t getPosMainOp(uint32_t p,uint32_t q) {
   int bracket_num = 0;
   for (int tmp = p; tmp < q; tmp++) {
 
-    if (tokens[tmp].type == TK_NUM) {
+    if (tokens[tmp].type == TK_NUM_DEC) {
       continue;
     }
     if (tokens[tmp].type == '(') {
@@ -183,7 +187,6 @@ uint32_t getPosMainOp(uint32_t p,uint32_t q) {
         flag_bracket = false;
       continue;
     }
-
     if (( tokens[tmp].type == '*' || tokens[tmp].type == '/')) {
       if (flag_bracket) {
         continue;
@@ -196,7 +199,6 @@ uint32_t getPosMainOp(uint32_t p,uint32_t q) {
         }
       }
     }
-
     if (tokens[tmp].type == '+' || tokens[tmp].type == '-' ) {
       if (flag_bracket) {
         continue;
@@ -206,7 +208,6 @@ uint32_t getPosMainOp(uint32_t p,uint32_t q) {
       }
     }
   }
-
   return candicator;
 }
 
