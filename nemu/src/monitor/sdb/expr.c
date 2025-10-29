@@ -246,6 +246,11 @@ int eval(int p,int q) {
   }
 }
 
+bool is_ref(int type) {
+  if (type == TK_NUM_DEC || type == TK_NUM_HEX || type == ')' || type == REG)
+    return false;
+  return true;
+}
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -254,15 +259,14 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
+  // TODO();
   for (int i = 0; i < nr_token; i ++) {
-    if (tokens[i].type == '*' && (i == 0 || tokens[i -1].type == REG)){
+    if (tokens[i].type == '*' && (i == 0 || is_ref(tokens[i -1].type) )){
       tokens[i].type = TK_DEREF;
     }
   }
-
   uint32_t result = eval(0,nr_token-1);
   printf("%u\n",result);
-  // TODO();
 
   return 0;
 }
