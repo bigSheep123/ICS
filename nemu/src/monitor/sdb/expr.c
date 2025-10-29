@@ -22,6 +22,7 @@
 #include <stdbool.h>
 #include <macro.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 enum {
   TK_NOTYPE = 256, TK_EQ, TK_NUM_DEC, 
