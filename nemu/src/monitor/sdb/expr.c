@@ -161,8 +161,10 @@ bool check_parentheses(int p, int q)
 uint32_t charArrToUint32(char* charArr) {
   char* endptr;
   unsigned long  num;
-
-  num = strtoul(charArr,&endptr,10); 
+  if (charArr[1] == 'x' || charArr[1] == 'X') 
+    num = strtoul(charArr,&endptr,16);
+  else  
+    num = strtoul(charArr,&endptr,10); 
   return (uint32_t)num;
 }
 
