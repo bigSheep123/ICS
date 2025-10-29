@@ -24,8 +24,9 @@
 #include <stdlib.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ, TK_NUM_DEC, TK_NUM_HEX, REG,
-  TK_NOT_EQ, TK_AND,
+  TK_NOTYPE = 256, TK_EQ, TK_NUM_DEC, 
+  TK_NUM_HEX, REG, TK_NOT_EQ, TK_AND,
+  TK_DEREF,
   /* TODO: Add more token types */
 };
 
@@ -251,7 +252,14 @@ word_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
+
   /* TODO: Insert codes to evaluate the expression. */
+  for (int i = 0; i < nr_token; i ++) {
+    if (tokens[i].type == '*' && (i == 0 || tokens[i -1].type == REG)){
+      tokens[i].type = TK_DEREF;
+    }
+  }
+
   uint32_t result = eval(0,nr_token-1);
   printf("%u\n",result);
   // TODO();
