@@ -21,6 +21,7 @@
 #include <regex.h>
 #include <stdbool.h>
 #include <macro.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 
@@ -228,7 +229,15 @@ int eval(int p,int q) {
      * For now this token should be a number.
      * Return the value of the number.
      */
-    return charArrToUint32(tokens[p].str);
+    if (tokens[p].type == TK_NUM_DEC || tokens[p].type == TK_NUM_HEX)
+      return charArrToUint32(tokens[p].str);
+    else if (tokens[p].type == REG) {
+      bool success = true;
+      word_t reg_val = isa_reg_str2val(tokens[p].str,&success);
+      if (success == false) 
+        printf("Reg to Value is failed!");
+      return reg_val;
+    } 
   }
   else if (check_parentheses(p, q) == true) {
     /* The expression is surrounded by a matched pair of parentheses.
@@ -250,6 +259,7 @@ int eval(int p,int q) {
     default: assert(0);
     }
   }
+  return 0;
 }
 
 bool is_ref(int type) {
