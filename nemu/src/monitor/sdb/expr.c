@@ -215,6 +215,9 @@ uint32_t getPosMainOp(uint32_t p,uint32_t q) {
   return candicator;
 }
 
+// priority  
+//   ()  >  *(ref)  >  */%   >  +-   >  &&  > || 
+
 int eval(int p,int q) {
   if (p > q) {
     /* Bad expression */
