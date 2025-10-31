@@ -58,4 +58,4 @@ clean:
 	-rm -rf $(BUILD_DIR)
 
 count:
-	@find ./ -name "*.c" -o -name "*.h"
+	@find ./ -name "*.c" -o -name "*.h" | xargs grep -v '^$' | wc -l 
